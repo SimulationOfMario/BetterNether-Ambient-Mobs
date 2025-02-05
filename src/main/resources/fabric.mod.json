@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "betternether-ambientmobs",
+	"version": "${version}",
+	"name": "BetterNether AmbientMobs",
+	"description": "This is a mod that only adds the ambients mobs from BetterNether.",
+	"authors": [
+		"SilentAutopsy",
+		"quiqueck (BN original author)",
+		"paulevs (BN original author)"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/betternether-ambientmobs/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobs"
+		],
+		"client": [
+			"net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobsClient"
+		],
+		"fabric-datagen": [
+			"net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobsDataGenerator"
+		]
+	},
+	"mixins": [
+		"betternether-ambientmobs.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
