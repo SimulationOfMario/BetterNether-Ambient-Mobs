@@ -1,0 +1,22 @@
+{
+	"betternetherambientmobs.mob.firefly.fly": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "betternetherambientmobs:mob/firefly/fly",
+				"stream": false,
+				"attenuation_distance": 8
+			}
+		]
+	},
+	"betternetherambientmobs.mob.jellyfish": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "betternetherambientmobs:mob/jellyfish",
+				"stream": false,
+				"attenuation_distance": 8
+			}
+		]
+	}
+}

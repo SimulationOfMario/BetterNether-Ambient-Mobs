@@ -1,0 +1,7 @@
+{
+	"item.betternetherambientmobs.spawn_egg_firefly": "ホタルのスポーンエッグ",
+	"item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "水素クラゲのスポーンエッグ",
+
+	"entity.betternetherambientmobs.firefly": "ホタル",
+	"entity.betternetherambientmobs.hydrogen_jellyfish": "水素クラゲ"
+}

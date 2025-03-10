@@ -1,0 +1,7 @@
+{
+  "item.betternetherambientmobs.spawn_egg_firefly": "Яйцо призыва светлячка",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Яйцо призыва водородной медузы",
+
+  "entity.betternetherambientmobs.firefly": "Светлячёк",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Водородная медуза"
+}

@@ -1,0 +1,14 @@
+accessWidener   v1  named
+
+# Classes
+accessible    class    net/minecraft/client/renderer/RenderStateShard$TransparencyStateShard
+accessible    class    net/minecraft/client/renderer/RenderStateShard$WriteMaskStateShard
+accessible    class    net/minecraft/client/renderer/RenderStateShard$DepthTestStateShard
+accessible    class    net/minecraft/client/renderer/RenderStateShard$LayeringStateShard
+accessible    class    net/minecraft/client/renderer/RenderStateShard$OutputStateShard
+accessible    class    net/minecraft/client/renderer/RenderType$CompositeState
+accessible    class    net/minecraft/client/renderer/RenderType$CompositeRenderType
+accessible    class    net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+
+# Methods
+accessible method net/minecraft/server/commands/LocateCommand getHolders (Lnet/minecraft/commands/arguments/ResourceOrTagKeyArgument$Result;Lnet/minecraft/core/Registry;)Ljava/util/Optional;

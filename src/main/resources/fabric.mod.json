@@ -1,20 +1,20 @@
 {
 	"schemaVersion": 1,
-	"id": "betternether-ambientmobs",
+	"id": "betternetherambientmobs",
 	"version": "${version}",
-	"name": "BetterNether AmbientMobs",
-	"description": "This is a mod that only adds the ambients mobs from BetterNether.",
+	"name": "BetterNether Ambient Mobs",
+	"description": "This is a mod that only adds the ambient mobs from BetterNether.",
 	"authors": [
 		"SilentAutopsy",
 		"quiqueck (BN original author)",
 		"paulevs (BN original author)"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/betternether-ambient-mobs",
+		"sources": ""
 	},
-	"license": "MIT",
-	"icon": "assets/betternether-ambientmobs/icon.png",
+	"license": "MIT (CC BY-NC-SA 4.0 for some Assets)",
+	"icon": "assets/betternetherambientmobs/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -24,19 +24,24 @@
 			"net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobsClient"
 		],
 		"fabric-datagen": [
-			"net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobsDataGenerator"
+			"net.silentautopsy.datagen.betternetherambientmobs.BetterNetherAmbientMobsDatagen"
 		]
 	},
+	"accessWidener": "betternetherambientmobs.accesswidener",
 	"mixins": [
-		"betternether-ambientmobs.mixins.json"
+		"betternetherambientmobs.mixins.client.json",
+		"betternetherambientmobs.mixins.common.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.10",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*"
+		"fabricloader": ">=0.14.21",
+		"fabric": ">=0.83.0",
+		"minecraft": [
+			"1.20",
+			"1.20.1"
+		],
+		"bclib": "3.0.x"
 	},
-	"suggests": {
-		"another-mod": "*"
+	"breaks": {
+		"bclib": "<3.0.14"
 	}
 }

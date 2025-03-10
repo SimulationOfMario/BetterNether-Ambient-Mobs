@@ -1,0 +1,7 @@
+{
+  "item.betternetherambientmobs.spawn_egg_firefly": "Irrlicht Spawn-Ei",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Wasserstoffqualle Spawn-Ei",
+
+  "entity.betternetherambientmobs.firefly": "Irrlicht",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Wasserstoffqualle"
+}

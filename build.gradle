@@ -1,38 +1,79 @@
 plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
 
-base {
-	archivesName = project.archives_base_name
+def local_bclib = findProject(':BCLib') != null
+def local_wunderlib = findProject(':WunderLib') != null
+
+loom {
+	accessWidenerPath = file("src/main/resources/betternetherambientmobs.accesswidener")
+	runs {
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
+		datagenClient {
+			inherit client
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.strict-validation"
+			vmArg "-Dfabric-api.datagen.modid=betternetherambientmobs"
+
+			runDir "build/datagen"
+		}
+	}
 }
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	mavenCentral()
+	//mavenLocal()
+	maven { url 'https://jitpack.io' }
+	maven { url "https://maven.bai.lol" }
+	maven { url 'https://maven.terraformersmc.com' }
+	flatDir {
+		dirs 'libs'
+	}
 }
 
-fabricApi {
-	configureDataGeneration {
-		client = true
+sourceSets {
+	main {
+		// Add the datagenned files into the jar.
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
 	}
 }
 
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.officialMojangMappings()
+
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
+	compileOnly group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+
+	println "Using local BCLib: ${local_bclib}"
+	if (local_bclib) {
+		implementation project(path: ":BCLib", configuration: 'dev')
+	} else {
+		modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
+	}
+
+	//modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+	if (local_wunderlib) {
+		println "Using local WunderLib"
+		implementation project(path: ":WunderLib", configuration: 'dev')
+	}
 }
 
 processResources {
@@ -58,9 +99,7 @@ java {
 }
 
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
-	}
+	from "LICENSE"
 }
 
 // configure the maven publication

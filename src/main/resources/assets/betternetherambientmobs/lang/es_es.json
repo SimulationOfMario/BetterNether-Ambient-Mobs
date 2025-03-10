@@ -1,0 +1,7 @@
+{
+  "item.betternetherambientmobs.spawn_egg_firefly": "Generar Luciérnaga",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Generar Medusa de Hidrógeno",
+
+  "entity.betternetherambientmobs.firefly": "Luciérnaga",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Medusa de Hidrógeno"
+}

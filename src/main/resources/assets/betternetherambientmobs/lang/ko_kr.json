@@ -1,0 +1,7 @@
+{
+  "item.betternetherambientmobs.spawn_egg_firefly": "반딧불이 생성 알",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "수소 해파리 생성 알",
+
+  "entity.betternetherambientmobs.firefly": "반딧불이",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "수소 해파리"
+}

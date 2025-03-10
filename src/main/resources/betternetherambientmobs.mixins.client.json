@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "net.silentautopsy.betternetherambientmobs.mixin",
+	"package": "net.silentautopsy.betternetherambientmobs.mixin.client",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"RenderLayerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
