@@ -2,5 +2,5 @@
 
 ### BetterNether Ambient Mobs is a Minecraft mod that only adds two mobs from the [BetterNether](https://github.com/quiqueck/BetterNether) mod: Firefly and Hydrogen Jellyfish.
 
-Modrinth: [Here](https://modrinth.com/mod/betternether-ambient-mobs)
-CurseForge: Comming Soon!
+- Modrinth: [Here](https://modrinth.com/mod/betternether-ambient-mobs)
+- CurseForge: Comming Soon!
