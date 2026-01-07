@@ -15,12 +15,11 @@ import net.silentautopsy.betternetherambientmobs.entity.render.RenderFirefly;
 import net.silentautopsy.betternetherambientmobs.entity.render.RenderHydrogenJellyfish;
 
 @Environment(EnvType.CLIENT)
-public class EntityRenderRegistry
+public class EntityRendersRegistry
 {
     private static final String DEFAULT_LAYER = "main";
     public static final ModelLayerLocation FIREFLY_MODEL = registerMain("firefly");
     public static final ModelLayerLocation HYDROGEN_JELLYFISH_MODEL = registerMain("hydrogen_jelly");
-
 
     public static ModelLayerLocation registerMain(String id)
     {
@@ -29,14 +28,15 @@ public class EntityRenderRegistry
 
     public static void register()
     {
-        registerRenderMob(NetherEntities.FIREFLY.type(), RenderFirefly.class);
-        registerRenderMob(NetherEntities.HYDROGEN_JELLYFISH.type(), RenderHydrogenJellyfish.class);
+        registerRenderMob(EntitiesRegistry.FIREFLY.type(), RenderFirefly.class);
+        registerRenderMob(EntitiesRegistry.HYDROGEN_JELLYFISH.type(), RenderHydrogenJellyfish.class);
 
         EntityModelLayerRegistry.registerModelLayer(FIREFLY_MODEL, ModelEntityFirefly::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(HYDROGEN_JELLYFISH_MODEL, ModelHydrogenJellyfish::getTexturedModelData);
     }
 
-    private static void registerRenderMob(EntityType<?> entity, Class<? extends MobRenderer<?, ?>> renderer) {
+    private static void registerRenderMob(EntityType<?> entity, Class<? extends MobRenderer<?, ?>> renderer)
+    {
         EntityRendererRegistry.register(entity, (context) -> {
             MobRenderer render = null;
             try
@@ -45,7 +45,7 @@ public class EntityRenderRegistry
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                BetterNetherAmbientMobs.LOGGER.error("Error while instantiating renderer {}", renderer.getSimpleName(), e);
             }
             return render;
         });

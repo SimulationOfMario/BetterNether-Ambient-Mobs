@@ -4,19 +4,19 @@
 		"sounds": [
 			{
 				"name": "betternetherambientmobs:mob/firefly/fly",
-				"stream": false,
 				"attenuation_distance": 8
 			}
-		]
-	},
+		],
+        "subtitle": "subtitles.entity.betternetherambientmobs.firefly.ambient"
+    },
 	"betternetherambientmobs.mob.jellyfish": {
 		"category": "neutral",
 		"sounds": [
 			{
 				"name": "betternetherambientmobs:mob/jellyfish",
-				"stream": false,
 				"attenuation_distance": 8
 			}
-		]
+		],
+        "subtitle": "subtitles.entity.betternetherambientmobs.jellyfish.ambient"
 	}
 }

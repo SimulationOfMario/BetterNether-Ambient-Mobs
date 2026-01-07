@@ -10,6 +10,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.silentautopsy.betternetherambientmobs.entity.custom.EntityHydrogenJellyfish;
+import org.jetbrains.annotations.NotNull;
 
 public class ModelHydrogenJellyfish extends AgeableListModel<EntityHydrogenJellyfish>
 {
@@ -116,12 +117,10 @@ public class ModelHydrogenJellyfish extends AgeableListModel<EntityHydrogenJelly
     private static final double HALF_PI = Math.PI * 0.5;
     private static final int LEGS = 8;
     private final ModelPart body;
-    //private final ModelPart body_top;
     private final ModelPart[] legs_1;
     private final ModelPart[] legs_2;
     private final ModelPart[] legs_3;
     private final ModelPart[] wings;
-    //private final ModelPart[] leg_details;
 
     public ModelHydrogenJellyfish(ModelPart root) {
         this.body = root.getChild(PartNames.BODY);
@@ -140,18 +139,18 @@ public class ModelHydrogenJellyfish extends AgeableListModel<EntityHydrogenJelly
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
+    protected @NotNull Iterable<ModelPart> headParts() {
         return ImmutableList.of();
     }
 
     @Override
-    protected Iterable<ModelPart> bodyParts() {
+    protected @NotNull Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(this.body);
     }
 
     @Override
     public void setupAnim(
-            EntityHydrogenJellyfish entity,
+            @NotNull EntityHydrogenJellyfish entity,
             float limbAngle,
             float limbDistance,
             float animationProgress,

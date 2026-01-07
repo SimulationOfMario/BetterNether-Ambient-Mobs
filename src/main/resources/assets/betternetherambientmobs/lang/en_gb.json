@@ -3,5 +3,8 @@
   "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Hydrogen Jellyfish Spawn Egg",
 
   "entity.betternetherambientmobs.firefly": "Firefly",
-  "entity.betternetherambientmobs.hydrogen_jellyfish": "Hydrogen Jellyfish"
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Hydrogen Jellyfish",
+
+  "subtitles.entity.betternetherambientmobs.firefly.ambient": "Firefly buzzing",
+  "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "Hydrogen Jellyfish bubbling"
 }

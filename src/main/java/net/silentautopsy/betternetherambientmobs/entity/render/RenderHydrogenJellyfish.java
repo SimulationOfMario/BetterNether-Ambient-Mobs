@@ -9,25 +9,27 @@ import net.minecraft.resources.ResourceLocation;
 import net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobs;
 import net.silentautopsy.betternetherambientmobs.entity.custom.EntityHydrogenJellyfish;
 import net.silentautopsy.betternetherambientmobs.entity.model.ModelHydrogenJellyfish;
-import net.silentautopsy.betternetherambientmobs.registry.EntityRenderRegistry;
+import net.silentautopsy.betternetherambientmobs.registry.EntityRendersRegistry;
+import org.jetbrains.annotations.NotNull;
 
 public class RenderHydrogenJellyfish extends MobRenderer<EntityHydrogenJellyfish, AgeableListModel<EntityHydrogenJellyfish>>
 {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(BetterNetherAmbientMobs.MOD_ID, "textures/entity/jellyfish.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(BetterNetherAmbientMobs.MOD_ID, "textures/entity/jellyfish.png");
 
     public RenderHydrogenJellyfish(EntityRendererProvider.Context ctx)
     {
-        super(ctx, new ModelHydrogenJellyfish(ctx.bakeLayer(EntityRenderRegistry.HYDROGEN_JELLYFISH_MODEL)), 1);
+        super(ctx, new ModelHydrogenJellyfish(ctx.bakeLayer(EntityRendersRegistry.HYDROGEN_JELLYFISH_MODEL)), 1);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(EntityHydrogenJellyfish entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull EntityHydrogenJellyfish entity)
+    {
         return TEXTURE;
     }
 
     @Override
-    protected int getBlockLightLevel(EntityHydrogenJellyfish entity, BlockPos pos) {
+    protected int getBlockLightLevel(@NotNull EntityHydrogenJellyfish entity, @NotNull BlockPos pos)
+    {
         return 15;
     }
 

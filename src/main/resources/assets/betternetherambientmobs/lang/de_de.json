@@ -1,7 +1,10 @@
 {
-  "item.betternetherambientmobs.spawn_egg_firefly": "Irrlicht Spawn-Ei",
-  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Wasserstoffqualle Spawn-Ei",
+  "item.betternetherambientmobs.spawn_egg_firefly": "Glühwürmchen Spawn-Ei",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Wasserstoff-Qualle Spawn-Ei",
 
-  "entity.betternetherambientmobs.firefly": "Irrlicht",
-  "entity.betternetherambientmobs.hydrogen_jellyfish": "Wasserstoffqualle"
+  "entity.betternetherambientmobs.firefly": "Glühwürmchen",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Wasserstoff-Qualle",
+
+  "subtitles.entity.betternetherambientmobs.firefly.ambient": "Glühwürmchen summt",
+  "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "Wasserstoff-Qualle blubbert"
 }

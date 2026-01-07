@@ -1,13 +1,10 @@
 package net.silentautopsy.betternetherambientmobs;
 
 import net.fabricmc.api.ModInitializer;
-
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
-import net.silentautopsy.betternetherambientmobs.registry.NetherEntities;
 import net.silentautopsy.betternetherambientmobs.registry.*;
-import net.silentautopsy.betternetherambientmobs.tab.CreativeTabs;
-import org.betterx.bclib.api.v2.dataexchange.DataExchangeAPI;
-import org.betterx.worlds.together.world.WorldConfig;
+import net.silentautopsy.betternetherambientmobs.registry.CreativeTabsRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,29 +16,30 @@ public class BetterNetherAmbientMobs implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
-		LOGGER.info("Initializing " + MOD_ID);
+		LOGGER.info("Initializing BetterNether Ambient Mobs...");
+
+        if (FabricLoader.getInstance().isModLoaded("betternether"))
+        {
+            LOGGER.warn(
+                """
+                BetterNether Ambient Mobs must not be used alongside BetterNether!
+                BetterNether already provides overlapping ambient mob systems and related content,
+                which may lead to duplicated mechanics, non-expected behaviors, and unstable gameplay.
+                It is strongly recommended to keep only one of the two mods installed when starting the game!
+                """
+            );
+        }
 
 		SoundsRegistry.register(MOD_ID);
-		SoundsRegistry.ensureStaticallyLoaded();
 
-		NetherItems.register();
+        TagsRegistry.register();
 
-		NetherEntities.register();
+        EntitiesRegistry.register();
 
-		NetherBiomes.register();
+		CreativeTabsRegistry.register();
 
-		NetherTags.register();
-
-		WorldConfig.registerModCache(MOD_ID);
-		DataExchangeAPI.registerMod(MOD_ID);
-
-		CreativeTabs.register();
-	}
-
-	public static ResourceLocation id(String path)
-	{
-		return BetterNetherAmbientMobs.makeID(path);
-	}
+        BiomesRegistry.register();
+    }
 
 	public static ResourceLocation makeID(String path)
 	{

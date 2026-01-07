@@ -9,4 +9,4 @@
 </div>
 
 - Modrinth: [Here](https://modrinth.com/mod/betternether-ambient-mobs)
-- CurseForge: Coming Soon!
+- CurseForge: [Here](https://www.curseforge.com/minecraft/mc-mods/betternether-ambient-mobs)

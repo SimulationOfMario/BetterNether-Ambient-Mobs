@@ -3,5 +3,8 @@
 	"item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "水素クラゲのスポーンエッグ",
 
 	"entity.betternetherambientmobs.firefly": "ホタル",
-	"entity.betternetherambientmobs.hydrogen_jellyfish": "水素クラゲ"
+	"entity.betternetherambientmobs.hydrogen_jellyfish": "水素クラゲ",
+
+    "subtitles.entity.betternetherambientmobs.firefly.ambient": "ホタルの羽音",
+    "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "水素クラゲの泡立つ音"
 }

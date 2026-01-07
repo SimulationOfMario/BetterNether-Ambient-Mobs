@@ -4,15 +4,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.silentautopsy.betternetherambientmobs.BetterNetherAmbientMobs;
-import org.betterx.worlds.together.tag.v3.TagManager;
+import net.silentautopsy.betternetherambientmobs.tag.TagManager;
 
-public class NetherTags
+public class TagsRegistry
 {
-
-    public static final TagKey<Block> FIREFLY_FLOWERS = TagManager.BLOCKS.makeTag(
-            BetterNetherAmbientMobs.MOD_ID,
-            "firefly_flowers"
-    );
+    public static final TagKey<Block> FIREFLY_FLOWERS = TagManager.BLOCKS.makeTag(BetterNetherAmbientMobs.MOD_ID, "firefly_flowers");
 
     public static void register()
     {

@@ -9,10 +9,12 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.silentautopsy.betternetherambientmobs.mixin.client.RenderLayerMixin;
+import java.util.function.Function;
 
-
-public abstract class RenderPhaseAccessor extends RenderStateShard { //extends ShaderDebugHelper{
-    public RenderPhaseAccessor(String name, Runnable beginAction, Runnable endAction) {
+public abstract class RenderPhaseAccessor extends RenderStateShard
+{
+    public RenderPhaseAccessor(String name, Runnable beginAction, Runnable endAction)
+    {
         super(name, beginAction, endAction);
     }
 
@@ -26,7 +28,6 @@ public abstract class RenderPhaseAccessor extends RenderStateShard { //extends S
                         GlStateManager.SourceFactor.ONE,
                         GlStateManager.DestFactor.ZERO
                 );
-                //RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             },
             () -> {
                 RenderSystem.disableBlend();
@@ -34,27 +35,19 @@ public abstract class RenderPhaseAccessor extends RenderStateShard { //extends S
             }
     );
 
-    private static final RenderType getFireflySetup(ResourceLocation texture) {
-        //initDebugShader();
-
+    private static RenderType getFireflySetup(ResourceLocation texture)
+    {
         RenderType.CompositeState multiPhaseParameters = RenderType.CompositeState.builder()
-                                                                                  //.shader(MY_DEBUG_SHADER)
-                                                                                  //.setShaderState(RENDERTYPE_EYES_SHADER)
-                                                                                  .setShaderState(RenderStateShard.RENDERTYPE_TRANSLUCENT_SHADER)
-                                                                                  .setTextureState(new TextureStateShard(
-                                                                                          texture,
-                                                                                          false,
-                                                                                          false
-                                                                                  ))
-                                                                                  .setWriteMaskState(COLOR_WRITE)
-                                                                                  .setCullState(NO_CULL)
-                                                                                  .setOverlayState(OVERLAY)
-                                                                                  .setLightmapState(LIGHTMAP)
-                                                                                  .setTransparencyState(
-                                                                                          ALPHA_ADD_TRANSPARENCY)
-                                                                                  .createCompositeState(false);
-        return RenderLayerMixin.callCreate(
-                "firefly",
+          .setShaderState(RenderStateShard.RENDERTYPE_TRANSLUCENT_SHADER)
+          .setTextureState(new TextureStateShard(texture, false, false))
+          .setWriteMaskState(COLOR_WRITE)
+          .setCullState(NO_CULL)
+          .setOverlayState(OVERLAY)
+          .setLightmapState(LIGHTMAP)
+          .setTransparencyState(ALPHA_ADD_TRANSPARENCY)
+          .createCompositeState(false);
+
+        return RenderLayerMixin.callCreate("firefly",
                 DefaultVertexFormat.NEW_ENTITY,
                 VertexFormat.Mode.QUADS,
                 256,
@@ -64,11 +57,10 @@ public abstract class RenderPhaseAccessor extends RenderStateShard { //extends S
         );
     }
 
-    private static final java.util.function.Function<ResourceLocation, RenderType> FIREFLY_RENDER_LAYER = Util.memoize(
-            RenderPhaseAccessor::getFireflySetup);
+    private static final Function<ResourceLocation, RenderType> FIREFLY_RENDER_LAYER = Util.memoize(RenderPhaseAccessor::getFireflySetup);
 
-    public static RenderType getFirefly(ResourceLocation texture) {
-        //return getDebugLayer(texture, RenderPhaseAccessor::getFireflySetup);
+    public static RenderType getFirefly(ResourceLocation texture)
+    {
         return FIREFLY_RENDER_LAYER.apply(texture);
     }
 }

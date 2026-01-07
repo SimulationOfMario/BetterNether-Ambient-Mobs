@@ -3,5 +3,8 @@
   "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "수소 해파리 생성 알",
 
   "entity.betternetherambientmobs.firefly": "반딧불이",
-  "entity.betternetherambientmobs.hydrogen_jellyfish": "수소 해파리"
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "수소 해파리",
+
+  "subtitles.entity.betternetherambientmobs.firefly.ambient": "반딧불이 윙윙거림",
+  "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "수소 해파리 거품 소리"
 }

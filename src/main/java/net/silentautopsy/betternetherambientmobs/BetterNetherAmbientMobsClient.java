@@ -1,13 +1,13 @@
 package net.silentautopsy.betternetherambientmobs;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.silentautopsy.betternetherambientmobs.registry.EntityRenderRegistry;
+import net.silentautopsy.betternetherambientmobs.registry.EntityRendersRegistry;
 
 public class BetterNetherAmbientMobsClient implements ClientModInitializer
 {
     @Override
     public void onInitializeClient()
     {
-        EntityRenderRegistry.register();
+        EntityRendersRegistry.register();
     }
 }

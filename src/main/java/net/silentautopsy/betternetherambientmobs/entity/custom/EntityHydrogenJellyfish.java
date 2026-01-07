@@ -11,7 +11,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
@@ -20,26 +19,22 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.silentautopsy.betternetherambientmobs.entity.DespawnableAnimal;
 import net.silentautopsy.betternetherambientmobs.registry.SoundsRegistry;
-
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityHydrogenJellyfish extends DespawnableAnimal implements FlyingAnimal
 {
-    private static final EntityDataAccessor<Float> SCALE =
-            SynchedEntityData.defineId(EntityHydrogenJellyfish.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Float> SCALE = SynchedEntityData.defineId(EntityHydrogenJellyfish.class, EntityDataSerializers.FLOAT);
 
     private Vec3 preVelocity;
     private Vec3 newVelocity = new Vec3(0, 0, 0);
     private int timer;
     private int timeOut;
-    private float prewYaw;
+    private float prevYaw;
     private float nextYaw;
 
     public EntityHydrogenJellyfish(EntityType<? extends EntityHydrogenJellyfish> type, Level world)
@@ -54,9 +49,9 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
         this.entityData.define(SCALE, 0.5F + random.nextFloat());
     }
 
-    public static AttributeSupplier.Builder createMobAttributes() {
-        return Mob
-                .createMobAttributes()
+    public static AttributeSupplier.@NotNull Builder createMobAttributes()
+    {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 0.5)
                 .add(Attributes.FLYING_SPEED, 0.05)
                 .add(Attributes.MOVEMENT_SPEED, 0.5)
@@ -64,53 +59,59 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
     }
 
     @Override
-    protected boolean isFlapping() {
+    protected boolean isFlapping()
+    {
         return true;
     }
 
     @Override
-    protected void jumpInLiquid(TagKey<Fluid> fluid) {
+    protected void jumpInLiquid(@NotNull TagKey<Fluid> fluid)
+    {
         this.setDeltaMovement(this.getDeltaMovement().add(0.0D, 0.01D, 0.0D));
     }
 
     @Override
-    public boolean isNoGravity() {
+    public boolean isNoGravity()
+    {
         return true;
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
+    public void addAdditionalSaveData(@NotNull CompoundTag tag)
+    {
         super.addAdditionalSaveData(tag);
-
         tag.putFloat("Scale", getScale());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(@NotNull CompoundTag tag)
+    {
         super.readAdditionalSaveData(tag);
 
-        if (tag.contains("Scale")) {
-            this.entityData.set(SCALE, tag.getFloat("Scale"));
-        }
+        if (tag.contains("Scale")) this.entityData.set(SCALE, tag.getFloat("Scale"));
 
         this.refreshDimensions();
     }
 
-    public float getScale() {
+    public float getScale()
+    {
         return this.entityData.get(SCALE);
     }
 
-    public EntityDimensions getDimensions(Pose pose) {
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose pose)
+    {
         return super.getDimensions(pose).scale(this.getScale());
     }
 
     @Override
-    public void playerTouch(Player player) {
+    public void playerTouch(Player player)
+    {
         player.hurt(player.damageSources().generic(), 3);
     }
 
     @Override
-    public void refreshDimensions() {
+    public void refreshDimensions()
+    {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
@@ -119,17 +120,18 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
     }
 
     @Override
-    public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
-        if (SCALE.equals(data)) {
-            this.refreshDimensions();
-        }
+    public void onSyncedDataUpdated(@NotNull EntityDataAccessor<?> data)
+    {
+        if (SCALE.equals(data)) this.refreshDimensions();
     }
 
     @Override
-    protected void customServerAiStep() {
+    protected void customServerAiStep()
+    {
         timer++;
-        if (timer > timeOut) {
-            prewYaw = this.getYRot();
+        if (timer > timeOut)
+        {
+            prevYaw = this.getYRot();
             nextYaw = random.nextFloat() * 360;
 
             double rads = Math.toRadians(nextYaw + 90);
@@ -151,34 +153,39 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
             timer = 0;
             timeOut = random.nextInt(300) + 120;
         }
-        if (timer <= 120) {
+
+        if (timer <= 120)
+        {
             if (this.getYRot() != nextYaw) {
                 float delta = timer / 120F;
-                this.setYRot(lerpAngleDegrees(delta, prewYaw, nextYaw));
+                this.setYRot(lerpAngleDegrees(delta, prevYaw, nextYaw));
                 this.setDeltaMovement(
                         Mth.lerp(delta, preVelocity.x, newVelocity.x),
                         Mth.lerp(delta, preVelocity.y, newVelocity.y),
                         Mth.lerp(delta, preVelocity.z, newVelocity.z)
                 );
             }
-        } else {
-            this.setDeltaMovement(newVelocity);
         }
+        else this.setDeltaMovement(newVelocity);
     }
 
-    public static float lerpAngleDegrees(float delta, float first, float second) {
+    public static float lerpAngleDegrees(float delta, float first, float second)
+    {
         return first + delta * Mth.wrapDegrees(second - first);
     }
 
     @Override
-    public int getMaxSpawnClusterSize() {
-        return 1;
+    public int getMaxSpawnClusterSize()
+    {
+        return 3;
     }
 
     @Override
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source)
+    {
         super.die(source);
-        if (level().isClientSide) {
+        if (level().isClientSide)
+        {
             float scale = getScale() * 3;
             for (int i = 0; i < 20; i++)
                 this.level().addParticle(ParticleTypes.EXPLOSION,
@@ -187,30 +194,32 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
                         getZ() + random.nextGaussian() * scale,
                         0, 0, 0
                 );
-        } else {
-            if (source != level().damageSources().fellOutOfWorld()) {
-                this.level().explode(this, getX(), getEyeY(), getZ(), 7 * getScale(), Level.ExplosionInteraction.MOB);
-            }
         }
+        else if (source != level().damageSources().fellOutOfWorld())
+            this.level().explode(this, getX(), getEyeY(), getZ(), 7 * getScale(), Level.ExplosionInteraction.MOB);
     }
 
     @Override
-    public SoundEvent getAmbientSound() {
+    public SoundEvent getAmbientSound()
+    {
         return SoundsRegistry.MOB_JELLYFISH.value();
     }
 
     @Override
-    protected float getSoundVolume() {
-        return 0.1F;
+    protected float getSoundVolume()
+    {
+        return 0.5F;
     }
 
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel world, @NotNull AgeableMob mate)
+    {
         return null;
     }
 
     @Override
-    public boolean causeFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+    public boolean causeFallDamage(float fallDistance, float damageMultiplier, @NotNull DamageSource damageSource)
+    {
         return false;
     }
 
@@ -218,40 +227,18 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
     protected void checkFallDamage(
             double heightDifference,
             boolean onGround,
-            BlockState landedState,
-            BlockPos landedPosition
-    ) {
+            @NotNull BlockState landedState,
+            @NotNull BlockPos landedPosition
+    )
+    {
     }
 
     @Override
     public boolean hurt(DamageSource source, float amount)
     {
-        if (source.is(DamageTypes.WITHER) || source.getDirectEntity() != null || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+        if (source.is(DamageTypes.WITHER) || source.getDirectEntity() != null || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY))
             return super.hurt(source, amount);
-        }
         return false;
-    }
-
-    public static boolean canSpawn(
-            EntityType<? extends EntityHydrogenJellyfish> type,
-            LevelAccessor world,
-            MobSpawnType spawnReason,
-            BlockPos pos,
-            RandomSource random
-    ) {
-        try {
-            AABB box = new AABB(pos).inflate(64, 256, 64);
-            List<EntityHydrogenJellyfish> list = world.getEntitiesOfClass(
-                    EntityHydrogenJellyfish.class,
-                    box,
-                    (entity) -> {
-                        return true;
-                    }
-            );
-            return list.size() < 4;
-        } catch (Exception e) {
-            return true;
-        }
     }
 
     @Override
@@ -259,5 +246,4 @@ public class EntityHydrogenJellyfish extends DespawnableAnimal implements Flying
     {
         return !this.onGround();
     }
-
 }

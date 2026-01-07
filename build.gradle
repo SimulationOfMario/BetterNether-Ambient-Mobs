@@ -6,9 +6,6 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
-def local_bclib = findProject(':BCLib') != null
-def local_wunderlib = findProject(':WunderLib') != null
-
 loom {
 	accessWidenerPath = file("src/main/resources/betternetherambientmobs.accesswidener")
 	runs {
@@ -20,18 +17,18 @@ loom {
 			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
 			vmArg "-Dfabric-api.datagen.strict-validation"
 			vmArg "-Dfabric-api.datagen.modid=betternetherambientmobs"
-
 			runDir "build/datagen"
 		}
 	}
 }
 
 repositories {
+    mavenLocal()
 	mavenCentral()
-	//mavenLocal()
+
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.bai.lol" }
-	maven { url 'https://maven.terraformersmc.com' }
+
 	flatDir {
 		dirs 'libs'
 	}
@@ -58,22 +55,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+
 	compileOnly group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-
-	println "Using local BCLib: ${local_bclib}"
-	if (local_bclib) {
-		implementation project(path: ":BCLib", configuration: 'dev')
-	} else {
-		modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
-	}
-
-	//modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
-	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
-	if (local_wunderlib) {
-		println "Using local WunderLib"
-		implementation project(path: ":WunderLib", configuration: 'dev')
-	}
 }
 
 processResources {

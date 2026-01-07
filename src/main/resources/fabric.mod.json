@@ -3,7 +3,7 @@
 	"id": "betternetherambientmobs",
 	"version": "${version}",
 	"name": "BetterNether Ambient Mobs",
-	"description": "This is a mod that only adds the ambient mobs from BetterNether.",
+	"description": "Only adds the firefly and hydrogen jellyfish from BetterNether.",
 	"authors": [
 		"SilentAutopsy",
 		"quiqueck (BN original author)",
@@ -30,7 +30,7 @@
 	"accessWidener": "betternetherambientmobs.accesswidener",
 	"mixins": [
 		"betternetherambientmobs.mixins.client.json",
-		"betternetherambientmobs.mixins.common.json"
+        "betternetherambientmobs.mixins.common.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",
@@ -38,10 +38,8 @@
 		"minecraft": [
 			"1.20",
 			"1.20.1"
-		],
-		"bclib": "3.0.x"
+		]
 	},
 	"breaks": {
-		"bclib": "<3.0.14"
 	}
 }

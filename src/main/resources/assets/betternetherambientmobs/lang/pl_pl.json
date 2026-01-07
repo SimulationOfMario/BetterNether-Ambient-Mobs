@@ -1,7 +1,10 @@
 {
-	"item.betternetherambientmobs.spawn_egg_firefly": "Jajo Przywołujące świetlika",
-	"item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Jajo Tarłowe Meduzy Wodorowej",
+  "item.betternetherambientmobs.spawn_egg_firefly": "Jajo Przywołujące Świetlika",
+  "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Jajo Tarłowe Wodorowej Meduzy",
 
-	"entity.betternetherambientmobs.firefly": "Świetlik",
-	"entity.betternetherambientmobs.hydrogen_jellyfish": "Meduza Wodorowa"
+  "entity.betternetherambientmobs.firefly": "Świetlika",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Wodorowej Meduzy",
+
+  "subtitles.entity.betternetherambientmobs.firefly.ambient": "Brzęczenie Świetlika",
+  "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "Bulgotanie Wodorowej Meduzy"
 }

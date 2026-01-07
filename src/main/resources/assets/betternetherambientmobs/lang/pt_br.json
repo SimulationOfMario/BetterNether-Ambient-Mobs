@@ -1,7 +1,10 @@
 {
-  "item.betternetherambientmobs.spawn_egg_firefly": "Ovo gerador de Vaga-lume",
+  "item.betternetherambientmobs.spawn_egg_firefly": "Ovo gerador de Vagalume",
   "item.betternetherambientmobs.spawn_egg_hydrogen_jellyfish": "Ovo gerador de Água-viva de Hidrogênio",
 
-  "entity.betternetherambientmobs.firefly": "Vaga-lume",
-  "entity.betternetherambientmobs.hydrogen_jellyfish": "Hydrogen Jellyfish"
+  "entity.betternetherambientmobs.firefly": "Vagalume",
+  "entity.betternetherambientmobs.hydrogen_jellyfish": "Água-viva de Hidrogênio",
+
+  "subtitles.entity.betternetherambientmobs.firefly.ambient": "Zumbido de Vagalume",
+  "subtitles.entity.betternetherambientmobs.jellyfish.ambient": "Borbulhar da Água-viva de Hidrogênio"
 }
