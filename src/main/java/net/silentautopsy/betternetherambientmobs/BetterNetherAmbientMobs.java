@@ -20,14 +20,11 @@ public class BetterNetherAmbientMobs implements ModInitializer
 
         if (FabricLoader.getInstance().isModLoaded("betternether"))
         {
-            LOGGER.warn(
-                """
-                BetterNether Ambient Mobs must not be used alongside BetterNether!
-                BetterNether already provides overlapping ambient mob systems and related content,
-                which may lead to duplicated mechanics, non-expected behaviors, and unstable gameplay.
-                It is strongly recommended to keep only one of the two mods installed when starting the game!
-                """
-            );
+            LOGGER.warn("==================================================================================================");
+            LOGGER.warn("BetterNether Ambient Mobs must not be used alongside BetterNether!");
+            LOGGER.warn("BetterNether already provides overlapping ambient mob systems and related content, which may lead to duplicated mechanics, non-expected behaviors, and unstable gameplay.");
+            LOGGER.warn("It is strongly recommended to keep only one of the two mods installed when starting the game!");
+            LOGGER.warn("==================================================================================================");
         }
 
 		SoundsRegistry.register(MOD_ID);
